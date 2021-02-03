@@ -2,12 +2,13 @@ import React from 'react'
 import { CSVReader } from 'react-papaparse'
 
 
-export const CSVImporter = () => {
+export const CSVImporter = (props) => {
 
   const handleOnDrop = (data) => {
     console.log('---------------------------')
     console.log(data)
     console.log('---------------------------')
+    props.setCSVData(data)
     
   }
 
