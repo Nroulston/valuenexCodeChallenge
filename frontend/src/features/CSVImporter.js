@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 
 import { CSVReader } from 'react-papaparse'
+import { UploadOptions } from './UploadOptions'
 
 export default class CSVImporter extends Component {
   handleOnDrop = (data) => {
     console.log('---------------------------')
     console.log(data)
     console.log('---------------------------')
+    
   }
 
   handleOnError = (err, file, inputElem, reason) => {
@@ -21,14 +23,19 @@ export default class CSVImporter extends Component {
 
   render() {
     return (
+      <>
       <CSVReader
-        onDrop={this.handleOnDrop}
-        onError={this.handleOnError}
-        addRemoveButton
-        onRemoveFile={this.handleOnRemoveFile}
+      onDrop={this.handleOnDrop}
+      onError={this.handleOnError}
+      addRemoveButton
+      onRemoveFile={this.handleOnRemoveFile}
       >
         <span>Drop CSV file here or click to upload.</span>
       </CSVReader>
+      <UploadOptions>
+
+      </UploadOptions>
+      </>
     )
   }
 }
