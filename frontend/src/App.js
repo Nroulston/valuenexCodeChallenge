@@ -1,7 +1,7 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import './App.css';
 import React from 'react'
-import { CSVImporter } from './features/CSVImporter'
+import { Home } from './app/Home'
 // import { CSVReader } from 'react-papaparse'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={CSVImporter}/> 
+            <Route exact path='/' component={Home}/> 
           </Switch>
         </BrowserRouter>
 

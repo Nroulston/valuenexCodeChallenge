@@ -1,12 +1,12 @@
 import React from 'react'
 
-export const UploadOptions = () => {
+export const UploadOptions = (props) => {
 
 
   return(
 
     <>
-    <button> HI </button>
+    <button onClick={props.handleClick}> HI </button>
     </>
   )
 }
