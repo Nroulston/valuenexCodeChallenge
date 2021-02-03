@@ -1,9 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import { CSVReader } from 'react-papaparse'
 import { UploadOptions } from './UploadOptions'
 
 export const CSVImporter = () => {
+  const [ImportNeededFlag, SetImportNeededFlag] = useState(true)
+  const [UploadOptionsFlag, setUploadOptionsFlag] = useState(false)
+
+  const chooseUploadOptions = () => {
+    SetImportNeededFlag(false)
+    setUploadOptionsFlag(true)
+  }
+
   const handleOnDrop = (data) => {
     console.log('---------------------------')
     console.log(data)
@@ -22,17 +30,20 @@ export const CSVImporter = () => {
   }
     return (
       <>
-      <CSVReader
+      {ImportNeededFlag && <CSVReader
       onDrop={handleOnDrop}
       onError={handleOnError}
       addRemoveButton
       onRemoveFile={handleOnRemoveFile}
       >
         <span>Drop CSV file here or click to upload.</span>
-      </CSVReader>
-      <UploadOptions>
+      </CSVReader> }
+        <button onClick={chooseUploadOptions}>
+          Next
+        </button>
+      {UploadOptionsFlag && <UploadOptions>
 
-      </UploadOptions>
+      </UploadOptions> }
       </>
     )
  

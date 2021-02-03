@@ -6,6 +6,7 @@ export const UploadOptions = () => {
   return(
 
     <>
+    <button> HI </button>
     </>
   )
 }
