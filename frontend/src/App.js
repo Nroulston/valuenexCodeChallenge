@@ -1,7 +1,7 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import './App.css';
 import React from 'react'
-import CSVImporter from './features/CSVImporter'
+import { CSVImporter } from './features/CSVImporter'
 // import { CSVReader } from 'react-papaparse'
 
 function App() {
