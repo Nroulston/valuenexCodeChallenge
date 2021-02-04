@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { InputSelectBox } from './InputSelectBoxes'
 
 export const UploadOptions = (props) => {
@@ -10,35 +10,42 @@ export const UploadOptions = (props) => {
     checkBoxOptions[option] = true
   ))
 
+  useEffect(() => {
+    headers.forEach((option) => (
+
+      checkBoxOptions[option] = true
+    ))
+    props.setCheckedItems(checkBoxOptions)
+    debugger
+  },[])
+
+
   const inputStyle = {
     display: 'inline-block',
     width: '100%'
   }
 
-  const [checkedItems, setCheckedItems] = useState(checkBoxOptions)
-  const [selectID, setSelectID] = useState('')
-  const [selectName, setSelectName] = useState('')
-  const [selectTimeStamp, setSelectTimeStamp] = useState('')
-  
+
   const handleCheckedChange = (event) => {
-    setCheckedItems({...checkedItems, [event.target.name] : event.target.checked})
+    props.setCheckedItems({...props.checkedItems, [event.target.name] : event.target.checked})
   }
 
   const handleSelectChange = (event) => {
     switch (event.target.name) {
       case "ID":
-        setSelectID(event.target.value);
+        props.setSelectID(event.target.value);
         break;
       case "Name":
-        setSelectName(event.target.value)
+        props.setSelectName(event.target.value)
         break;
       case "TimeStamp":
-        setSelectTimeStamp(event.target.value)
+        props.setSelectTimeStamp(event.target.value)
         break;
     }
   }
 
   const inputCheckBoxes = props.CSVData[0].data.map((option, index) => {
+    
     return (
     <>
       <label key={index} >
@@ -47,7 +54,7 @@ export const UploadOptions = (props) => {
           style={inputStyle}
           name={option}
           type="checkbox"
-          checked={checkedItems[option]}
+          checked={props.checkedItems[option]}
           onChange={handleCheckedChange} 
         />
       </label>   
@@ -60,30 +67,30 @@ export const UploadOptions = (props) => {
     <form>
       { inputCheckBoxes }
       <InputSelectBox 
-        value={selectID} 
+        value={props.selectID} 
         name="ID" 
         handleSelectChange={handleSelectChange}
         options={headers}
-        selectFirst={selectName}
-        selectSecond={selectTimeStamp}
+        selectFirst={props.selectName}
+        selectSecond={props.selectTimeStamp}
       >
       </InputSelectBox>
       <InputSelectBox 
-        value={selectName} 
+        value={props.selectName} 
         name="Name" 
         handleSelectChange={handleSelectChange}
         options={headers}
-        selectFirst={selectID}
-        selectSecond={selectTimeStamp}
+        selectFirst={props.selectID}
+        selectSecond={props.selectTimeStamp}
       >
       </InputSelectBox>
       <InputSelectBox 
-        value={selectTimeStamp} 
+        value={props.selectTimeStamp} 
         name="TimeStamp" 
         handleSelectChange={handleSelectChange}
         options={headers}
-        selectFirst={selectID}
-        selectSecond={selectName}
+        selectFirst={props.selectID}
+        selectSecond={props.selectName}
       >
       </InputSelectBox>
     </form>

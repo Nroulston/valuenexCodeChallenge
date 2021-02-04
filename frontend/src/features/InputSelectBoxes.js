@@ -2,9 +2,7 @@ import React, {useState} from 'react'
 
 
 export const InputSelectBox = (props) => {
-  const [filteredOptions, setFilteredOptions] = useState([])
-  
-  
+
   const inputSelectBoxOptions = props.options.map((option, index) => {
     if (option === props.selectFirst || option === props.selectSecond ) {
       return (
