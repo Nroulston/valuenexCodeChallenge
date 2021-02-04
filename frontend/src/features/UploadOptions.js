@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
+import { InputSelectBox } from './InputSelectBoxes'
 
 export const UploadOptions = (props) => {
-  const options = {}
-  props.CSVData[0].data.forEach((option) => (
+  const checkBoxOptions = {}
+  const headers = props.CSVData[0].data
+  
+  headers.forEach((option) => (
 
-    options[option] = true
+    checkBoxOptions[option] = true
   ))
+
   const inputStyle = {
     display: 'inline-block',
     width: '100%'
   }
 
-  const [checkedItems, setCheckedItems] = useState(options)
+  const [checkedItems, setCheckedItems] = useState(checkBoxOptions)
   const [selectID, setSelectID] = useState('')
   const [selectName, setSelectName] = useState('')
   const [selectTimeStamp, setSelectTimeStamp] = useState('')
@@ -50,38 +54,38 @@ export const UploadOptions = (props) => {
     </>
   )})
 
-  const inputSelectBoxOptions = props.CSVData[0].data.map((option, index) => {
-    return (  
-      <option value={option}>{option}</option>
-    )
-  })
-
-  const inputSelectBoxes = [
-    <label>
-        ID
-        <select value={selectID} name="ID" onChange={handleSelectChange}>
-          {inputSelectBoxOptions} 
-        </select>  
-    </label>,
-    <label>
-        Name
-        <select value={selectName} name="Name" onChange={handleSelectChange}>
-          {inputSelectBoxOptions} 
-        </select>  
-    </label>,
-    <label>
-        TimeStamp
-        <select value={selectTimeStamp} name="TimeStamp" onChange={handleSelectChange}>
-          {inputSelectBoxOptions} 
-        </select>  
-    </label>
-  ]
   return(
     <>
     <p>Exclude Columns by untoggling the checkbox</p>
     <form>
       { inputCheckBoxes }
-      { inputSelectBoxes}
+      <InputSelectBox 
+        value={selectID} 
+        name="ID" 
+        handleSelectChange={handleSelectChange}
+        options={headers}
+        selectName={selectName}
+        selectTimeStamp={selectTimeStamp}
+      >
+      </InputSelectBox>
+      <InputSelectBox 
+        value={selectName} 
+        name="Name" 
+        handleSelectChange={handleSelectChange}
+        options={headers}
+        selectID={selectID}
+        selectTimeStamp={selectTimeStamp}
+      >
+      </InputSelectBox>
+      <InputSelectBox 
+        value={selectTimeStamp} 
+        name="TimeStamp" 
+        handleSelectChange={handleSelectChange}
+        options={headers}
+        selectID={selectID}
+        selectName={selectName}
+      >
+      </InputSelectBox>
     </form>
     
     </>
