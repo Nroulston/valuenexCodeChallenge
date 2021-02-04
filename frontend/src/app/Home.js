@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { CSVImporter } from '../features/CSVImporter'
 import { UploadOptions } from '../features/UploadOptions'
+import { ReviewUploadSelection } from '../features/ReviewUploadSelection'
 
 export const Home = () => {
   const [ImportNeededFlag, SetImportNeededFlag] = useState(true)
   const [UploadOptionsFlag, SetUploadOptionsFlag] = useState(false)
+  const [ReviewOptionsFlag, setReviewOptionsFlag] = useState(false)
   const [CSVData, setCSVData] = useState({})
   const [checkedItems, setCheckedItems] = useState({})
   const [selectID, setSelectID] = useState('')
@@ -16,8 +18,8 @@ export const Home = () => {
     SetUploadOptionsFlag(true)  
   }
 
-  const handleClick = () => {
-    SetImportNeededFlag(true)
+  const ReviewUploadOptions = () => {
+    setReviewOptionsFlag(true)
     SetUploadOptionsFlag(false)
   }
 
@@ -28,7 +30,7 @@ export const Home = () => {
      </CSVImporter>}
      {UploadOptionsFlag 
      && <UploadOptions 
-          handleClick={handleClick} 
+          handleClick={ReviewUploadOptions} 
           CSVData={CSVData}
           checkedItems={checkedItems}
           setCheckedItems={setCheckedItems}
@@ -40,6 +42,15 @@ export const Home = () => {
           setSelectTimeStamp={setSelectTimeStamp}
         >
       </UploadOptions> }
+      {ReviewOptionsFlag 
+      &&<ReviewUploadSelection
+        CSVData={CSVData}
+        checkedItems={checkedItems}
+        selectID={selectID}
+        selectName={selectName}
+        selectTimeStamp={selectTimeStamp}
+      >
+      </ReviewUploadSelection>}
       <button onClick={chooseUploadOptions}>
           Next
       </button>
