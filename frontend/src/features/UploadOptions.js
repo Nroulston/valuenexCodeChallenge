@@ -64,8 +64,8 @@ export const UploadOptions = (props) => {
         name="ID" 
         handleSelectChange={handleSelectChange}
         options={headers}
-        selectName={selectName}
-        selectTimeStamp={selectTimeStamp}
+        selectFirst={selectName}
+        selectSecond={selectTimeStamp}
       >
       </InputSelectBox>
       <InputSelectBox 
@@ -73,8 +73,8 @@ export const UploadOptions = (props) => {
         name="Name" 
         handleSelectChange={handleSelectChange}
         options={headers}
-        selectID={selectID}
-        selectTimeStamp={selectTimeStamp}
+        selectFirst={selectID}
+        selectSecond={selectTimeStamp}
       >
       </InputSelectBox>
       <InputSelectBox 
@@ -82,8 +82,8 @@ export const UploadOptions = (props) => {
         name="TimeStamp" 
         handleSelectChange={handleSelectChange}
         options={headers}
-        selectID={selectID}
-        selectName={selectName}
+        selectFirst={selectID}
+        selectSecond={selectName}
       >
       </InputSelectBox>
     </form>
